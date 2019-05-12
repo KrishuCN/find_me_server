@@ -3,6 +3,11 @@
     <output-path>$PROJECT_DIR$/out/artifacts/find_me_server_Web</output-path>
     <root id="archive" name="find_me_server_Web.war">
       <element id="artifact" artifact-name="find_me_server:Web exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/libs/servlet-api.jar" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>
