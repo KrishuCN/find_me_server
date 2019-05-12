@@ -95,7 +95,12 @@ public class PushService extends HttpServlet {
 
             request.setAttribute("org.apache.catalina.ASYNC_SUPPORTED", true);
             //下发定位命令
-            System.out.println(XingeApp.pushTokenAndroid(000, "secretKey", "test", "测试", "token"));
+            //XingeApp带标签皆为Android设备推送
+            System.out.println(XingeApp.pushTokenAndroid(000, "secretKey", "test", "测试", "token")); //推送给单个设备
+//            System.out.println(XingeApp.pushAccountAndroid(000, "myKey", "标题", "大家好!", "nickName")); //推送给单个账号
+//            System.out.println(XingeApp.pushAllAndroid(000, "myKey", "标题", "大家好!")); //推送给所有设备
+//            System.out.println(XingeApp.pushTagAndroid(000, "myKey", "标题", "大家好!", "beijing")); //推送给标签选中设备
+
             //开启线程等待
             AsyncContext aCtx = request.startAsync(request, response);
             AsyncHandler asyncHandler = new AsyncHandler(aCtx);
