@@ -39,7 +39,7 @@ public class PushService extends HttpServlet {
     private String back= ""; //用于判断客户端回传标志
     private String Lng= "";//经度
     private String Lat= "";//纬度
-    private String locName = "老公在这"; //坐标点上显示的名称
+    private String locName = "I'm here"; //坐标点上显示的名称
     private String conName = ""; //内容显示的名称
     private Boolean isBacked = false;//当客户端返回结果时用于退出循环的标志
 
@@ -155,7 +155,12 @@ public class PushService extends HttpServlet {
                 } else {
                     PrintWriter pw;
                     pw = ctx.getResponse().getWriter();
-                    pw.print("请求超时...请返回重试");
+
+                    String site = new String("http://api.map.baidu.com/marker?location=30.739507,103.980957&title=I'm here&content=电子科技大学西区科技园&output=html&src=webapp.baidu.openAPIdemo ");
+
+                    PageRedirect.getInstance().setPageRedirect(response, site);
+
+//                    pw.print("请求超时...请返回重试");
                     pw.flush();
                     pw.close();
                 }
