@@ -156,9 +156,11 @@ public class PushService extends HttpServlet {
                     PrintWriter pw;
                     pw = ctx.getResponse().getWriter();
 
-                    String site = new String("http://api.map.baidu.com/marker?location=30.739507,103.980957&title=I'm here&content=电子科技大学西区科技园&output=html&src=webapp.baidu.openAPIdemo ");
+                    String site = new String("http://api.map.baidu.com/marker?location=30.739507,103.980957&title=我在这里&content=电子科技大学西区科技园&output=html&src=webapp.baidu.openAPIdemo");
+                    byte[] temp = site.getBytes("UTF-8");
+                    String siteUTF8 = new String(temp,"UTF-8");
 
-                    PageRedirect.getInstance().setPageRedirect(response, site);
+                    PageRedirect.getInstance().setPageRedirect(response, siteUTF8);
 
 //                    pw.print("请求超时...请返回重试");
                     pw.flush();
