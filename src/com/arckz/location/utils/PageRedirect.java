@@ -3,6 +3,7 @@ package com.arckz.location.utils;
 import com.sun.istack.internal.NotNull;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * <pre>
@@ -31,7 +32,7 @@ public class PageRedirect {
      * @param response  HttpServletResponse
      * @param url 重定向的地址
      */
-    public void setPageRedirect(@NotNull HttpServletResponse response,String url){
+    public void setPageRedirect(@NotNull HttpServletResponse response,String url) throws IOException {
         if (response == null){
             throw new NullPointerException("HttpServletResponse can't be null..");
         }else {
@@ -39,8 +40,14 @@ public class PageRedirect {
                 throw new NullPointerException("The site url can't be null or empty!");
             }else {
                 // 要重定向的新位置
-                response.setStatus(response.SC_MOVED_TEMPORARILY);
-                response.setHeader("Location", url);
+                if (response!=null){
+                    response.setStatus(response.SC_MOVED_TEMPORARILY);
+                    response.setHeader("Content-Type","text/html;charset=UTF-8");
+                    response.setCharacterEncoding("UTF-8");
+//                response.setHeader("Location", url);
+                    String encodeUrl = response.encodeURL(url);
+                    response.sendRedirect(url);
+                }
             }
         }
     }
